@@ -1,0 +1,29 @@
+<head>
+    <link 
+     rel="stylesheet"
+     href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <style>
+        .i-am-centered {
+            margin: auto;
+            max-width: 300px;
+            padding-top: 5%;
+        }
+    </style>
+</head>
+  
+<div class="card i-am-centered mt-4" style="width: 60rem;">
+    <div class="card-body">
+        <div class="row mb-4">  
+            <div class="i-am-centered">
+                      
+                <form method="POST">
+                    {% csrf_token %}
+                    
+                    <p> "{{patient.name}} {{patient.surname}}" adlı hasta kaydını silmek istiyor musunuz? </p>
+                    <a class="btn btn-warning" href="{% url 'hastalar' %}" role="button">Geri</a>  
+                    <button type="submit" class="btn btn-danger">Hasta Kaydını Sil</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

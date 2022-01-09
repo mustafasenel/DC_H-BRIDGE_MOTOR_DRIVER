@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} Hastalar{% endblock %}
+
+{% block content %} 
+		
+<div class="mt-2 ms-4">
+		
+		  <h2>Kayıtlı Hastalar</h2>		
+
+</div>
+<hr>
+<div class="row ms-2 me-2 mb-4">
+	<div class="col">
+		<a class="btn btn-primary ms-4" href="{% url 'hasta-ekle' %}">Yeni Hasta Ekle</a>
+	</div>
+		<div class="col-10">
+			<form class="" method="GET">
+				
+				<div class="row mb-3">
+					<div class="col-sm-4">
+						<input class="form-control" type="search" placeholder="Ara" name ="search-area" value = "{{search_input}}">
+					</div>
+					<div class="col">
+						<button class="btn btn-outline-success" type="submit">Hasta Ara</button>
+						
+					</div>
+
+			</form>
+		</div>
+</div>	
+
+
+<div class="card card-body">
+	
+	<table class="table">
+		<tr>
+			
+			<th>TCKN</th>
+			<th>Ad</th>
+			<th>Soyad</th>
+			<th>Yaş</th>
+			<th>Cinsiyet</th>
+			<th>Eklenme Tarihi</th>
+			<th></th>
+			<th></th>
+			<th></th>
+			
+
+			
+		</tr>
+
+		{% for patient in patients %}
+			<tr>
+				
+				<td>{{patient.tckn}}</td>
+				<td>{{patient.name}}</td>						
+				<td>{{patient.surname}}</td>
+				<td>{{patient.age}}</td>
+				<td>{{patient.sex}}</td>
+				<td>{{patient.date_created}}</td>
+				<td><a class="btn btn-sm btn-primary ms-auto" href="{% url 'hastalar' patient.id %}">Görüntüle</a></td>
+				<td><a class="btn btn-sm btn-warning ms-auto" href="{% url 'hasta-edit' patient.id %}">Düzenle</a></td>
+				<td><a class="btn btn-sm btn-danger" href="{% url 'hasta-sil' patient.id %}">Sil</a></td>
+			
+			</tr>
+
+		{% empty %}
+		<h3>Henüz hasta eklenmedi.<h3>
+		{% endfor %}
+
+
+	</table>
+</div>
+
+
+
+{% endblock %}
